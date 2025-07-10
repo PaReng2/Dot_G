@@ -24,10 +24,17 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = new Vector3 (moveX, 0f, moveY);
 
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+
+        if (moveX != 0)
+        {
+            transform.Rotate(0f, moveX * Time.deltaTime, 0f);
+        }
     }
 
     public void Die()
     {
+        GameManager Manager = GetComponent<GameManager>();
+        Manager.EndGame();
         gameObject.SetActive(false);
     }
 }
