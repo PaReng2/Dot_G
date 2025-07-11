@@ -33,8 +33,16 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        GameManager Manager = GetComponent<GameManager>();
-        Manager.EndGame();
+        
+        GameManager manager = FindObjectOfType<GameManager>();
+        if (manager != null)
+        {
+            manager.EndGame();
+        }
+        else
+        {
+            Debug.LogError("GameManager not found");
+        }
         gameObject.SetActive(false);
     }
 }
